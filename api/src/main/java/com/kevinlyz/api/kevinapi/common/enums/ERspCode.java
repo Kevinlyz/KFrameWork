@@ -1,4 +1,4 @@
-package com.kevinlyz.provider.common.enums;
+package com.kevinlyz.api.kevinapi.common.enums;
 
 /**
  * 错误码

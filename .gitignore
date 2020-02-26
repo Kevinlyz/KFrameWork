@@ -37,3 +37,7 @@ mvnw
 *mvnw
 mvnw.cmd
 *mvnw.cmd
+
+### mac ###
+.DS_Store
+*.DS_Store

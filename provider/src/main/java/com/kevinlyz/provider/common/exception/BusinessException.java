@@ -1,9 +1,10 @@
 package com.kevinlyz.provider.common.exception;
 
 import com.alibaba.fastjson.JSON;
-import com.kevinlyz.provider.common.enums.ERspCode;
+import com.kevinlyz.api.kevinapi.common.enums.ERspCode;
 import com.kevinlyz.provider.common.result.entity.Error;
 import lombok.NonNull;
+
 
 /**
  * 业务异常

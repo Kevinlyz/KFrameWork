@@ -1,10 +1,8 @@
 package com.kevinlyz.provider.common.exception;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 
 
 /**
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
-    public static Guard.Result toStandardResult(Throwable throwable) {
+    public static String toStandardResult(Throwable throwable) {
 
         return null;
     }
