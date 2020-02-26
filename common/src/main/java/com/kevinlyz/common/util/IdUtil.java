@@ -1,4 +1,4 @@
-package com.kevinlyz.api.kevinapi.common.util;
+package com.kevinlyz.common.util;
 
 import java.util.UUID;
 

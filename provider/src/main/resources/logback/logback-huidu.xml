@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="LOG_HOME" source="logging.path" />
+    <springProperty scope="context" name="LOG_ROOT_LEVEL" source="logging.level.root" />
+    
+    <property name="LOG_CHARSET" value="UTF-8" />
+
+    <appender name="ROOT"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/root.log.%d{yyyy-MM-dd}</FileNamePattern>
+            <maxHistory>3000</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %-5level [%X{trace_proto}] [%X{jdb_traceid}] [%X{trace_uri}] [%X{trace_subject}] %logger{80} - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+    <appender name="ROOT_ASYNC"  class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>256</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <appender-ref ref="ROOT"/>
+    </appender>
+
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/error.log.%d{yyyy-MM-dd}</FileNamePattern>
+            <maxHistory>3000</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %-5level [%X{jdb_traceid}] [%X{userName}] [%X{mercCode}] [%X{url}] %logger{80} - %msg%n
+            </Pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="TASK" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/task.log.%d{yyyy-MM-dd}</FileNamePattern>
+            <maxHistory>3000</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %-5level [%X{trace_proto}] [%X{jdb_traceid}] [%X{trace_uri}]
+                [%X{trace_subject}] %logger{80} - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+    <logger name="com.jiedaibao.fundsource.app.provider.common.filter.TraceFilter" level="INFO" additivity="false">
+        <appender-ref ref="ROOT"/>
+    </logger>
+
+    <logger name="com.jiedaibao.fundsource.app.provider.task" level="INFO" additivity="false">
+        <appender-ref ref="TASK"/>
+    </logger>
+
+    <logger name="org.apache.ibatis" />
+    <logger name="org.springframework"/>
+    <logger name="java.sql.Connection"/>
+    <logger name="java.sql.ResultSet"/>
+
+    <root>
+        <appender-ref ref="ROOT_ASYNC" />
+        <appender-ref ref="ERROR" />
+    </root>
+</configuration>

@@ -2,7 +2,7 @@ package com.kevinlyz.provider.common.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.kevinlyz.api.kevinapi.common.trace.Trace;
-import com.kevinlyz.api.kevinapi.common.util.IdUtil;
+import com.kevinlyz.common.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.extension.Activate;
 import org.apache.dubbo.common.utils.StringUtils;
@@ -10,7 +10,7 @@ import org.apache.dubbo.rpc.*;
 import org.slf4j.MDC;
 
 /**
- * @author: tangzh
+ * @author: kevinlyz
  * @date: 2019/9/16$ 10:11 AM$
  * @version: 1.0
  **/
