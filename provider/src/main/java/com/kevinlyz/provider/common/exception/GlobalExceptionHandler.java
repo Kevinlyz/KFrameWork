@@ -3,7 +3,7 @@ package com.kevinlyz.provider.common.exception;
 import com.kevinlyz.api.kevinapi.common.enums.ERspCode;
 import com.kevinlyz.api.kevinapi.common.result.Result;
 import com.kevinlyz.api.kevinapi.common.result.Error;
-import com.kevinlyz.api.kevinapi.util.ResultUtil;
+import com.kevinlyz.api.kevinapi.common.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -27,6 +27,7 @@ public class GlobalExceptionHandler {
 
 
         if (throwable instanceof RuntimeException){
+            log.error("occur runtime exception: ", throwable);
             return ResultUtil.defaultFailure(ERspCode.ERROR.code, ERspCode.ERROR.message,
                     ERspCode.ERROR.userMessage);
         }else{

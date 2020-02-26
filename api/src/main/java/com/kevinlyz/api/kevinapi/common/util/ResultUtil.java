@@ -1,4 +1,4 @@
-package com.kevinlyz.api.kevinapi.util;
+package com.kevinlyz.api.kevinapi.common.util;
 
 
 import com.kevinlyz.api.kevinapi.common.enums.ERspCode;
