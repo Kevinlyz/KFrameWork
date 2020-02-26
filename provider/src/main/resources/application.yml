@@ -3,6 +3,11 @@ server:
   servlet:
     context-path: /
 
+spring:
+  application:
+    name: kevinlyz-provider
+  profiles:
+    active: @spring.profiles.active@
 
 logging:
   config: "classpath:logger/logback/logback-${spring.profiles.active}.xml"
