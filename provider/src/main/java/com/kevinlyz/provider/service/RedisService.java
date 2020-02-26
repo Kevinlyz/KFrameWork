@@ -17,4 +17,8 @@ public class RedisService {
         return;
     }
 
+    public static void main(String[] args) {
+        throw new RuntimeException();
+    }
+
 }

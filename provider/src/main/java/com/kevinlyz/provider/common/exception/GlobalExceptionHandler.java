@@ -1,5 +1,9 @@
 package com.kevinlyz.provider.common.exception;
 
+import com.kevinlyz.api.kevinapi.common.enums.ERspCode;
+import com.kevinlyz.api.kevinapi.common.result.Result;
+import com.kevinlyz.api.kevinapi.common.result.Error;
+import com.kevinlyz.api.kevinapi.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -17,9 +21,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
-    public static String toStandardResult(Throwable throwable) {
+    public static Result toStandardResult(Throwable throwable) {
 
-        return null;
+        Error error = new Error(ERspCode.ERROR.code, ERspCode.ERROR.message, ERspCode.ERROR.userMessage);
+
+
+        if (throwable instanceof RuntimeException){
+            return ResultUtil.defaultFailure(ERspCode.ERROR.code, ERspCode.ERROR.message,
+                    ERspCode.ERROR.userMessage);
+        }else{
+            return ResultUtil.defaultFailure(error);
+        }
     }
 
 }
